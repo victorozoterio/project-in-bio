@@ -23,5 +23,3 @@ export default function Button({
 		</button>
 	);
 }
-
-<Button className="bg-primary-500 text-write"> </Button>;
