@@ -3,7 +3,7 @@ import Button from "@/app/components/ui/button";
 import TextInput from "@/app/components/ui/text-input";
 import { Rocket } from "lucide-react";
 
-export default function CriarPage() {
+export default function CreatePage() {
 	return (
 		<div>
 			<Header />
