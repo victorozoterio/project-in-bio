@@ -2,10 +2,10 @@
 
 import { Github, Instagram, Linkedin, Plus, Twitter } from "lucide-react";
 import { startTransition, useState } from "react";
-import Modal from "../ui/modal";
-import Button from "../ui/button";
+import Modal from "../../ui/modal";
+import Button from "../../ui/button";
 import { useParams, useRouter } from "next/navigation";
-import TextInput from "../ui/text-input";
+import TextInput from "../../ui/text-input";
 import createSocialLinks from "@/app/actions/create-social-link";
 
 export default function EditSocialLinks({

@@ -1,10 +1,10 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import Modal from "../ui/modal";
+import Modal from "../../ui/modal";
 import { startTransition, useState } from "react";
-import TextInput from "../ui/text-input";
-import Button from "../ui/button";
+import TextInput from "../../ui/text-input";
+import Button from "../../ui/button";
 import { useParams, useRouter } from "next/navigation";
 import addCustomLinks from "@/app/actions/add-custom-links";
 
