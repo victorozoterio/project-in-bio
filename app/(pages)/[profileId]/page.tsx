@@ -1,5 +1,5 @@
 import ProjectCard from "@/app/components/commons/project-card";
-import { TotalVisits } from "@/app/components/commons/total-visits";
+import TotalVisits from "@/app/components/commons/total-visits";
 import UserCard from "@/app/components/commons/user-card/user-card";
 import { auth } from "@/app/lib/auth";
 import {
@@ -10,6 +10,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import NewProject from "./new-project";
 import { getDownloadURLFromPath } from "@/app/lib/firebase";
+import { increaseProfileVisits } from "@/app/actions/increase-profile-visits";
 
 export default async function ProfilePage({
 	params,
@@ -19,17 +20,12 @@ export default async function ProfilePage({
 	const profileData = await getProfileData(profileId);
 	if (!profileData) return notFound();
 
-	// TODO: get projects
-
 	const projects = await getProfileProjects(profileId);
 
 	const session = await auth();
-
 	const isOwner = profileData.userId === session?.user?.id;
 
-	// TODO: add total visits
-
-	// TODO: Se o usuário não estiver mais no trial, não deixar ver o projeto. Direcionar para upgrade.
+	if (!isOwner) await increaseProfileVisits(profileId);
 
 	return (
 		<div className="relative h-screen flex p-20 overflow-hidden">
@@ -55,9 +51,11 @@ export default async function ProfilePage({
 				))}
 				{isOwner && <NewProject profileId={profileId} />}
 			</div>
-			<div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
-				<TotalVisits />
-			</div>
+			{isOwner && (
+				<div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
+					<TotalVisits totalVisits={profileData.totalVisits} />
+				</div>
+			)}
 		</div>
 	);
 }
