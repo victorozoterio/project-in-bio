@@ -12,13 +12,13 @@ export default function Hero() {
 					Seus projetos e redes sociais em um único link
 				</h1>
 				<h2 className="text-xl leading-6">
-					Crie sua próprio página de projetos e compartilhe eles com o mundo.
+					Crie sua própria página de projetos e compartilhe eles com o mundo.
 					<br />
-					Acompanhe o engajamento com Analytics de cliques
+					Acompanhe o engajamento com Analytics de cliques!
 				</h2>
 				<div className="flex items-center gap-2 w-full mt-[10vh]">
-					<span className="text-white text-xl">projectinbio.com</span>
-					<TextInput placeholder="Seu link" />
+					<span className="text-white text-xl">projectinbio.com/</span>
+					<TextInput placeholder="seu link" />
 					<Button>Criar agora</Button>
 				</div>
 			</div>
@@ -26,13 +26,21 @@ export default function Hero() {
 				<div className="relative">
 					<UserCard />
 					<div className="absolute -bottom-[7%] -right-[45%]">
-						<TotalVisits />
-					</div>
-					<div className="absolute top-[20%] -left-[45%] -z-10">
-						<ProjectCard />
+						<TotalVisits totalVisits={1342} />
 					</div>
 					<div className="absolute -top-[5%] -left-[55%] -z-10">
-						<ProjectCard />
+						<ProjectCard
+							name="BugTracer"
+							description="Uma ferramenta simples e eficiente para registrar e acompanhar bugs durante o desenvolvimento de software."
+							img="project1.png"
+						/>
+					</div>
+					<div className="absolute top-[20%] -left-[45%] -z-10">
+						<ProjectCard
+							name="CodeLink"
+							description="Ferramenta para integrar e gerenciar repositórios do GitHub e GitLab em um só lugar, facilitando a colaboração e o controle de código."
+							img="project2.png"
+						/>
 					</div>
 				</div>
 			</div>
