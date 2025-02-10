@@ -67,7 +67,7 @@ export default function EditSocialLinks({
 						<div className="flex items-center gap-2 w-full">
 							<Github />
 							<TextInput
-								type="text"
+								typeof="text"
 								placeholder="Link Github"
 								value={github}
 								onChange={(e) => setGithub(e.target.value)}
@@ -76,7 +76,7 @@ export default function EditSocialLinks({
 						<div className="flex items-center gap-2 w-full">
 							<Linkedin />
 							<TextInput
-								type="text"
+								typeof="text"
 								placeholder="Link LinkedIn"
 								value={linkedin}
 								onChange={(e) => setLinkedin(e.target.value)}
@@ -85,7 +85,7 @@ export default function EditSocialLinks({
 						<div className="flex items-center gap-2 w-full">
 							<Instagram />
 							<TextInput
-								type="text"
+								typeof="text"
 								placeholder="Link Instagram"
 								value={instagram}
 								onChange={(e) => setInstagram(e.target.value)}
@@ -94,7 +94,7 @@ export default function EditSocialLinks({
 						<div className="flex items-center gap-2 w-full">
 							<Twitter />
 							<TextInput
-								type="text"
+								typeof="text"
 								placeholder="Link Twitter"
 								value={twitter}
 								onChange={(e) => setTwitter(e.target.value)}
