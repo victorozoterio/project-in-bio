@@ -33,7 +33,7 @@ export default function Hero() {
 					<div className="absolute top-[20%] -left-[45%] -z-10">
 						<ProjectCard
 							name="CodeLink"
-							description="Ferramenta para integrar e gerenciar repositórios do GitHub e GitLab em um só lugar, facilitando a colaboração e o controle de código."
+							description="Ferramenta para integrar e gerenciar repositórios do GitHub e GitLab em um só lugar."
 							img="project2.png"
 						/>
 					</div>
