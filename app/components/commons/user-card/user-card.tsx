@@ -16,14 +16,17 @@ export default async function UserCard({
 	isOwner?: boolean;
 }) {
 	const icons = [Github, Instagram, Linkedin, Twitter, Plus];
+	const imageUrl = profileData
+		? profileData.imagePath
+			? await getDownloadURLFromPath(profileData.imagePath)
+			: "/your-picture-here.png"
+		: "/me.png";
 
 	return (
 		<div className="w-[348px] flex flex-col gap-5 items-center p-5 border border-white border-opacity-10 bg-[#121212] rounded-3xl text-white">
 			<div className="size-48">
 				<img
-					src={
-						(await getDownloadURLFromPath(profileData?.imagePath)) || "/me.png"
-					}
+					src={imageUrl}
 					alt="Profile image"
 					className="rounded-full object-cover w-full h-full"
 				/>
@@ -31,12 +34,16 @@ export default async function UserCard({
 			<div className="flex flex-col gap-2 w-full">
 				<div className="flex items-center gap-2">
 					<h3 className="text-3xl font-bold min-w-0 overflow-hidden">
-						{profileData?.name || "Victor Ozoterio"}
+						{profileData
+							? profileData?.name || "Seu nome aqui"
+							: "Victor Ozoterio"}
 					</h3>
 					{isOwner && <EditUserCard profileData={profileData} />}
 				</div>
 				<p className="opacity-40">
-					{profileData?.description || "Desenvolvedor de software"}
+					{profileData
+						? profileData?.description || "Sobre você aqui"
+						: "Desenvolvedor de software"}
 				</p>
 			</div>
 			<div className="flex flex-col gap-2 w-full">

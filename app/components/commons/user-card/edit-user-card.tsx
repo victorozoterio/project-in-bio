@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpFromLine, UserPen } from "lucide-react";
-import { startTransition, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import Modal from "../../ui/modal";
 import TextInput from "../../ui/text-input";
 import TextArea from "../../ui/text-area";
@@ -31,6 +31,22 @@ export default function EditUserCard({
 	const [yourDescription, setYourDescription] = useState(
 		profileData?.description || "",
 	);
+
+	useEffect(() => {
+		if (profileData?.imagePath) {
+			const fetchImage = async () => {
+				const res = await fetch(`/api/get-image?path=${profileData.imagePath}`);
+				const data = await res.json();
+				if (data.url) {
+					setProfilePic(data.url);
+				} else {
+					console.error(data.error);
+				}
+			};
+
+			fetchImage();
+		}
+	}, [profileData?.imagePath]);
 
 	async function handleSaveProfile() {
 		setIsSavingProfile(true);
@@ -75,7 +91,7 @@ export default function EditUserCard({
 									<img
 										src={profilePic}
 										alt="Profile Picture"
-										className="object-cover object-center"
+										className="object-fill w-full h-full"
 									/>
 								) : (
 									<button
@@ -131,7 +147,12 @@ export default function EditUserCard({
 						</div>
 					</div>
 					<div className="flex gap-4 justify-end">
-						<button className="font-bold text-white">Voltar</button>
+						<button
+							onClick={() => setIsModalOpen(false)}
+							className="font-bold text-white"
+						>
+							Voltar
+						</button>
 						<Button onClick={handleSaveProfile} disabled={isSavingProfile}>
 							Salvar
 						</Button>
