@@ -107,7 +107,7 @@ export default async function UserCard({
 				<div className="w-full flex flex-col items-center gap-3">
 					{!profileData && (
 						<Link href="" className="w-full">
-							<Button className="w-full">Meu livro de progamação</Button>
+							<Button className="w-full">Meu livro de programação</Button>
 						</Link>
 					)}
 					{profileData?.link1 && (

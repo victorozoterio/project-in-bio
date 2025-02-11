@@ -73,7 +73,7 @@ export default function ProjectCard({
 				className="flex gap-5"
 			>
 				<div className="size-24 rounded-md overflow-hidden flex-shrink-0">
-					<img src={img} alt="Projeto" className="w-full h-full object-cover" />
+					<img src={img} alt="Projeto" className="object-fill w-full h-full" />
 				</div>
 				<div className="flex flex-col gap-2">
 					{isOwner && (
