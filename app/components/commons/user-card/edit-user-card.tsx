@@ -91,7 +91,7 @@ export default function EditUserCard({
 									<img
 										src={profilePic}
 										alt="Profile Picture"
-										className="object-fill w-full h-full"
+										className="object-cover w-full h-full"
 									/>
 								) : (
 									<button

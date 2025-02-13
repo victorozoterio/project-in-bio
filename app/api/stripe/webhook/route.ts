@@ -1,4 +1,5 @@
 import { db } from "@/app/lib/firebase";
+import { resend } from "@/app/lib/resend";
 import stripe from "@/app/lib/stripe";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -45,7 +46,24 @@ export async function POST(req: NextRequest) {
 
 					if (hostedVoucherUrl) {
 						const userEmail = event.data.object.customer_details?.email;
-						console.log("Enviar email para o cliente com o boleto");
+
+						if (userEmail) {
+							resend.emails.send({
+								from: "no-reply@projectinbio.com.br",
+								to: userEmail,
+								subject: "Seu boleto para pagamento",
+								html: `
+									<div style="font-family: Arial, sans-serif; color: #333; max-width: 600px;">
+										<p>Olá,</p>
+										<p>Segue o link para acessar seu boleto de pagamento:</p>
+										<p><a href="${hostedVoucherUrl}" style="color: #007BFF; text-decoration: none;">Clique aqui para acessar seu boleto</a></p>
+										<p>Se precisar de ajuda, entre em contato com nosso suporte.</p>
+										<p>Atenciosamente,</p>
+										<p><strong>Equipe Project In Bio</strong></p>
+									</div>
+								`,
+							});
+						}
 					}
 				}
 

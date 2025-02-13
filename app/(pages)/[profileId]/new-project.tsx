@@ -79,7 +79,7 @@ export default function NewProject({ profileId }: { profileId: string }) {
 									<img
 										src={projectImage}
 										alt="Project Image"
-										className="object-cover object-center"
+										className="object-cover w-full h-full"
 									/>
 								) : (
 									<button
