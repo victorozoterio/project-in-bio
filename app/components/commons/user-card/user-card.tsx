@@ -110,7 +110,7 @@ export default async function UserCard({
 							<Button className="w-full">Meu livro de programação</Button>
 						</Link>
 					)}
-					{profileData?.link1 && (
+					{profileData?.link1 && profileData.link1.title !== "" && (
 						<Link
 							href={formatUrl(profileData?.link1.url)}
 							target="_blank"
@@ -119,7 +119,7 @@ export default async function UserCard({
 							<Button className="w-full">{profileData.link1.title}</Button>
 						</Link>
 					)}
-					{profileData?.link2 && (
+					{profileData?.link2 && profileData.link2.title !== "" && (
 						<Link
 							href={formatUrl(profileData?.link2.url)}
 							target="_blank"
@@ -128,7 +128,7 @@ export default async function UserCard({
 							<Button className="w-full">{profileData.link2.title}</Button>
 						</Link>
 					)}
-					{profileData?.link3 && (
+					{profileData?.link3 && profileData.link3.title !== "" && (
 						<Link
 							href={formatUrl(profileData?.link3.url)}
 							target="_blank"
@@ -143,7 +143,13 @@ export default async function UserCard({
 							<Plus />
 						</button>
 					)}
-					{isOwner && <AddCustomLink />}
+					{isOwner && (
+						<AddCustomLink
+							link1={profileData?.link1}
+							link2={profileData?.link2}
+							link3={profileData?.link3}
+						/>
+					)}
 				</div>
 			</div>
 		</div>

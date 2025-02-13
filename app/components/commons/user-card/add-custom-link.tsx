@@ -8,36 +8,33 @@ import Button from "../../ui/button";
 import { useParams, useRouter } from "next/navigation";
 import addCustomLinks from "@/app/actions/add-custom-links";
 
-export default function AddCustomLink() {
+export default function AddCustomLink({
+	link1 = { title: "", url: "" },
+	link2 = { title: "", url: "" },
+	link3 = { title: "", url: "" },
+}: {
+	link1?: { title: string; url: string };
+	link2?: { title: string; url: string };
+	link3?: { title: string; url: string };
+}) {
 	const router = useRouter();
 	const { profileId } = useParams();
-
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isSavingCustomLinks, setIsSavingCustomLinks] = useState(false);
 
-	const [link1, setLink1] = useState({
-		title: "",
-		url: "",
-	});
-	const [link2, setLink2] = useState({
-		title: "",
-		url: "",
-	});
-	const [link3, setLink3] = useState({
-		title: "",
-		url: "",
-	});
+	const [link1State, setLink1State] = useState(link1);
+	const [link2State, setLink2State] = useState(link2);
+	const [link3State, setLink3State] = useState(link3);
 
 	const handleSaveCustomLinks = async () => {
 		setIsSavingCustomLinks(true);
-
 		if (!profileId) return;
 
 		await addCustomLinks({
 			profileId: profileId as string,
-			link1,
-			link2,
-			link3,
+			link1: link1State,
+			link2: link2State,
+			link3: link3State,
 		});
 
 		startTransition(() => {
@@ -66,9 +63,9 @@ export default function AddCustomLink() {
 								<p>Título do link</p>
 								<TextInput
 									placeholder="Digite o título"
-									value={link1.title}
+									value={link1State.title}
 									onChange={(e) =>
-										setLink1({ ...link1, title: e.target.value })
+										setLink1State({ ...link1State, title: e.target.value })
 									}
 								/>
 							</div>
@@ -76,8 +73,10 @@ export default function AddCustomLink() {
 								<p className="font-bold">Link</p>
 								<TextInput
 									placeholder="Inserir URL"
-									value={link1.url}
-									onChange={(e) => setLink1({ ...link1, url: e.target.value })}
+									value={link1State.url}
+									onChange={(e) =>
+										setLink1State({ ...link1State, url: e.target.value })
+									}
 								/>
 							</div>
 						</div>
@@ -87,9 +86,9 @@ export default function AddCustomLink() {
 								<p>Título do link</p>
 								<TextInput
 									placeholder="Digite o título"
-									value={link2.title}
+									value={link2State.title}
 									onChange={(e) =>
-										setLink2({ ...link2, title: e.target.value })
+										setLink2State({ ...link2State, title: e.target.value })
 									}
 								/>
 							</div>
@@ -97,8 +96,10 @@ export default function AddCustomLink() {
 								<p className="font-bold">Link</p>
 								<TextInput
 									placeholder="Inserir URL"
-									value={link2.url}
-									onChange={(e) => setLink2({ ...link2, url: e.target.value })}
+									value={link2State.url}
+									onChange={(e) =>
+										setLink2State({ ...link2State, url: e.target.value })
+									}
 								/>
 							</div>
 						</div>
@@ -108,9 +109,9 @@ export default function AddCustomLink() {
 								<p>Título do link</p>
 								<TextInput
 									placeholder="Digite o título"
-									value={link3.title}
+									value={link3State.title}
 									onChange={(e) =>
-										setLink3({ ...link3, title: e.target.value })
+										setLink3State({ ...link3State, title: e.target.value })
 									}
 								/>
 							</div>
@@ -118,8 +119,10 @@ export default function AddCustomLink() {
 								<p className="font-bold">Link</p>
 								<TextInput
 									placeholder="Inserir URL"
-									value={link3.url}
-									onChange={(e) => setLink3({ ...link3, url: e.target.value })}
+									value={link3State.url}
+									onChange={(e) =>
+										setLink3State({ ...link3State, url: e.target.value })
+									}
 								/>
 							</div>
 						</div>
